@@ -1,0 +1,23 @@
+.title-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quiz-apps-listing {
+  display: grid;
+  grid-template-columns: repeat(1, auto);
+  grid-gap: 30px;
+
+  @media (min-width: 500px) {
+    grid-template-columns: repeat(2, auto);
+  }
+
+  @media (min-width: 800px) {
+    grid-template-columns: repeat(3, auto);
+  }
+
+  .tile {
+    margin: 0;
+  }
+}

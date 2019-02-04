@@ -1,0 +1,20 @@
+.quiz-create {
+  display: grid;
+  grid-template-areas: "title title" "form questions";
+  grid-auto-columns: max-content auto;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 2fr;
+
+  .title {
+    margin-bottom: 0;
+    grid-area: title;
+  }
+
+  .quiz-create-form {
+    grid-area: form;
+  }
+
+  .quiz-create-questions {
+    grid-area: questions;
+  }
+}
