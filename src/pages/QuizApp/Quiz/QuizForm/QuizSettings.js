@@ -15,6 +15,7 @@ class QuizSettings extends Component {
   constructor (props) {
     super(props)
     this.handleFieldChange = this.handleFieldChange.bind(this)
+    this.handleSave = this.handleSave.bind(this)
   }
 
   handleFieldChange (field) {
@@ -25,6 +26,11 @@ class QuizSettings extends Component {
         [field]: value
       })
     }
+  }
+
+  handleSave (e) {
+    e.preventDefault()
+    this.props.onQuizSave()
   }
 
   render() {
@@ -93,6 +99,9 @@ class QuizSettings extends Component {
               />
             <div className="input-message">The quiz will not be available after this date.</div>
           </div>
+        </div>
+        <div className="controls">
+          <button onClick={this.handleSave} className="button button-primary">Save</button>
         </div>
       </div>
     )

@@ -10,6 +10,6 @@ export let loadQuizApps = () => async dispatch => {
     dispatch({ type: 'QUIZ_APPS_LIST_SUCCESS', payload: {quizApps: data} })
   } catch (err) {
     console.error(err)
-    dispatch({ type: 'QUIZ_APPS_LIST_ERROR', payload: {error: err.response.data.errors} })
+    dispatch({ type: 'QUIZ_APPS_LIST_ERROR', payload: {error: err.response.data} })
   }
 }

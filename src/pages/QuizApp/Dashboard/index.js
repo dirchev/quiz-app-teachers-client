@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import './index.scss'
 import { connect } from "react-redux";
+import { loadQuizess } from "actions/quiz"
 
 class Dashboard extends Component {
   constructor () {
@@ -9,14 +10,18 @@ class Dashboard extends Component {
 
     this.renderQuiz = this.renderQuiz.bind(this)
   }
+  componentWillMount () {
+    this.props.listQuizess()
+  }
+
   render() {
     return (
       <div>
         <h1>Quizzes</h1>
         <Link to={`/quiz-app/${this.props.match.params.quizAppId}/quiz/create`} className="button button-primary">Create new...</Link>
-        <div className="quizzes-list">
+        <div className="quizess-list">
           {
-            this.props.quizzes.map(this.renderQuiz)
+            this.props.quizess.map(this.renderQuiz)
           }
         </div>
       </div>
@@ -39,6 +44,9 @@ class Dashboard extends Component {
             : <div className="info-item danger">Not Published</div>
           }
           <div className="info-item primary">{quiz.noOfAttempts || 'unlimited'} attempts</div>
+        </div>
+        <div className="description">
+          {quiz.description}
         </div>
         {/* <div className="stats">
           {
@@ -82,7 +90,14 @@ let mapStateToProps = (state, props) => {
   let quizAppId = props.match.params.quizAppId
   return {
     quizAppId: quizAppId,
-    quizzes: (state.entities.quizApps[quizAppId].quizzes || []).map(quizId => state.entities.quizzes[quizId]).filter(i => i)
+    quizess: (state.entities.quizApps[quizAppId].quizess || []).map(quizId => state.entities.quizess[quizId]).filter(i => i),
   }
 }
-export default connect(mapStateToProps)(Dashboard)
+
+let mapDispatchToProps = (dispatch, props) => {
+  let quizAppId = props.match.params.quizAppId
+  return {
+    listQuizess: () => dispatch(loadQuizess({quizAppId}))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

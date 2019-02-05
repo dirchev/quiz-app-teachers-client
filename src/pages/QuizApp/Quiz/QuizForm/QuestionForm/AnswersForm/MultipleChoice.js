@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react"
 
 const DEFAULT_NEW_ANSWER = {
   text: '',
-  points: null
+  points: 0
 }
 
 class Question extends Component {

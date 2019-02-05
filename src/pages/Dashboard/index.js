@@ -34,8 +34,8 @@ class Dashboard extends Component {
 
 let mapStateToProps = state => {
   return {
-    loading: state.loading['QUIZ_APPS'],
-    error: state.error['QUIZ_APPS'],
+    loading: state.loading['QUIZ_APPS_LIST'],
+    error: state.error['QUIZ_APPS_LIST'],
     quizApps: state.quizApps.map(id => state.entities.quizApps[id])
   }
 }

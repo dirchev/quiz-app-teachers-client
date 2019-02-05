@@ -1,10 +1,10 @@
 import React, { Component } from "react"
 import './index.scss'
+import uuid from 'uuid'
 
 import QuestionForm from "./QuestionForm/index.js"
 
 const DEFAULT_NEW_QUESTION = {
-  id: Math.floor(Math.random() * 1000),
   title: "",
   content: "",
   answers: []
@@ -38,7 +38,10 @@ class QuizQuestions extends Component {
   addNewQuestion () {
     this.props.onQuestionsChange([
       ...this.props.questions,
-      DEFAULT_NEW_QUESTION
+      {
+        ...DEFAULT_NEW_QUESTION,
+        _id: uuid.v4()
+      }
     ])
   }
 

@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux"
 import loginAction from 'actions/login'
 import Input from 'components/Form/Input'
+import { getErrorMessagesForField } from "utils/errorMessages";
 
 class LoginForm extends Component {
   constructor () {
@@ -18,11 +19,7 @@ class LoginForm extends Component {
 
   getErrorForField (field) {
     if (!this.props.loginStatus.error) return ''
-    let errors = []
-    for (let error of this.props.loginStatus.error) {
-      if (error.path === field) errors.push(error.message)
-    }
-    return errors.join('. ')
+    return getErrorMessagesForField(this.props.loginStatus.error, field).join(' ')
   }
 
   handleChange (field) {

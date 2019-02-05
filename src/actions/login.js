@@ -10,6 +10,6 @@ export default (registerData) => async dispatch => {
     axios.defaults.headers.common['authtoken'] = data.token
     dispatch({ type: 'LOGIN_SUCCESS', payload: data })
   } catch (err) {
-    dispatch({ type: 'LOGIN_ERROR', payload: {error: err.response.data.errors} })
+    dispatch({ type: 'LOGIN_ERROR', payload: {error: err.response.data} })
   }
 }

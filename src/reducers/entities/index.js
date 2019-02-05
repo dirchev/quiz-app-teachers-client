@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import studentsReducer from './students'
-import quizzesReducer from './quizzes'
+import quizessReducer from './quizess'
 import teachersReducer from './teachers'
 import quizAppsReducer from './quizApps'
 
 export default combineReducers({
   students: studentsReducer,
-  quizzes: quizzesReducer,
+  quizess: quizessReducer,
   teachers: teachersReducer,
   quizApps: quizAppsReducer,
 })

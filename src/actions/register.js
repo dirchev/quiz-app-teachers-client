@@ -9,6 +9,6 @@ export default (registerData) => async dispatch => {
     await axios.post(registerEndpoint, registerData)
     dispatch({ type: 'REGISTER_SUCCESS' })
   } catch (err) {
-    dispatch({ type: 'REGISTER_ERROR', payload: {error: err.response.data.errors} })
+    dispatch({ type: 'REGISTER_ERROR', payload: {error: err.response.data} })
   }
 }

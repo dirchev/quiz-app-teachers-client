@@ -2,37 +2,18 @@ import React, { Component } from "react"
 import './index.scss'
 import QuizQuestions from "./QuizQuestions";
 import QuizSettings from "./QuizSettings";
-import updateQuiz from "actions/updateQuiz";
+import { updateQuiz, saveQuiz } from "actions/quiz";
 import initNewQuiz from "actions/initNewQuiz";
 import { connect } from "react-redux";
 
 const DEFAULT_QUIZ_STRUCTURE = {
-  id: 'new',
-  name: 'Programming 1',
+  _id: 'new',
+  name: 'Unnamed Quiz',
   description: '',
   noOfAttempts: 0,
   isMandatory: false,
   deadline: '',
-  questions: [
-    {
-      id: 1,
-      title: 'OOP Fundamentals',
-      content: 'Describe the three principles of object orientated programming',
-      type: 'multiple-choice',
-      anwsers: []
-    },
-    {
-      id: 2,
-      title: 'Abstract & Interface',
-      content: 'Describe what is the difference between abstract classes and interfaces',
-      type: 'multiple-choice',
-      answers: [
-        { text: 'a', points: 1 },
-        { text: 'b', points: 5 },
-        { text: 'c', points: 0 }
-      ]
-    }
-  ]
+  questions: []
 }
 
 class QuizForm extends Component {
@@ -40,6 +21,7 @@ class QuizForm extends Component {
     super(props)
     this.handleQuestionsChange = this.handleQuestionsChange.bind(this)
     this.handleQuizChange = this.handleQuizChange.bind(this)
+    this.handleQuizSave = this.handleQuizSave.bind(this)
   }
 
   handleQuestionsChange (newQuestions) {
@@ -59,11 +41,22 @@ class QuizForm extends Component {
     }
   }
 
+  handleQuizSave () {
+    this.props.onQuizSave(this.props.quiz)
+  }
+
   render() {
     return (
       <div className="quiz-create">
-        <QuizSettings quiz={this.props.quiz} onQuizChange={this.handleQuizChange} />
-        <QuizQuestions questions={this.props.quiz.questions} onQuestionsChange={this.handleQuestionsChange} />
+        <QuizSettings
+          quiz={this.props.quiz}
+          onQuizChange={this.handleQuizChange}
+          onQuizSave={this.handleQuizSave}
+        />
+        <QuizQuestions
+          questions={this.props.quiz.questions}
+          onQuestionsChange={this.handleQuestionsChange}
+        />
       </div>
     )
   }
@@ -73,11 +66,11 @@ let mapStateToProps = (state, props) => {
   let quizAppId = props.match.params.quizAppId
   let quizId = props.match.params.quizId || 'new'
   let quiz
-  if (!state.entities.quizzes[quizId]) {
+  if (!state.entities.quizess[quizId]) {
     quiz = DEFAULT_QUIZ_STRUCTURE
     quiz.quizAppId = quizAppId
   } else {
-    quiz = state.entities.quizzes[quizId]
+    quiz = state.entities.quizess[quizId]
   }
 
   return {
@@ -87,12 +80,16 @@ let mapStateToProps = (state, props) => {
 }
 
 let mapDispatchToProps = (dispatch, props) => {
+  let quizAppId = props.match.params.quizAppId
   return {
     onQuizChange: (newQuizData) => {
-      dispatch(updateQuiz(newQuizData))
+      dispatch(updateQuiz({quiz: newQuizData, quizAppId}))
     },
     onInitNewQuiz: (quizData, quizAppId) => {
       dispatch(initNewQuiz(quizData, quizAppId))
+    },
+    onQuizSave: (quizData) => {
+      dispatch(saveQuiz({quiz: quizData, quizAppId}))
     }
   }
 }

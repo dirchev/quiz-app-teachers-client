@@ -11,7 +11,6 @@ import QuizForm from "./Quiz/QuizForm"
 
 import StudentSidebar from "./Sidebars/Student"
 import StudentProfile from "./StudentProfile"
-import TeacherSidebar from "./Sidebars/Teacher"
 
 class QuizApp extends Component {
   render() {
@@ -33,7 +32,6 @@ class QuizApp extends Component {
             </Switch>
           </div>
           <Route path={`${this.props.match.path}/students/:studentId`} component={StudentSidebar} />
-          <Route path={`${this.props.match.path}/teachers/:teacherId`} component={TeacherSidebar} />
         </div>
       </div>
     )

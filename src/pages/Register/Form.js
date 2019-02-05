@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import { connect } from "react-redux"
 import registerAction from 'actions/register'
 import Input from 'components/Form/Input'
+import { getErrorMessagesForField } from "utils/errorMessages";
 
 class RegisterForm extends Component {
   constructor () {
@@ -19,11 +20,8 @@ class RegisterForm extends Component {
 
   getErrorForField (field) {
     if (!this.props.registerStatus.error) return ''
-    let errors = []
-    for (let error of this.props.registerStatus.error) {
-      if (error.path === field) errors.push(error.message)
-    }
-    return errors.join('. ')
+
+    return getErrorMessagesForField(this.props.loginStatus.error, field).join(' ')
   }
 
   handleChange (field) {
