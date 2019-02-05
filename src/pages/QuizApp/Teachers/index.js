@@ -1,12 +1,19 @@
 import React, { Component } from "react"
-import { Link } from "react-router-dom"
 import { connect } from "react-redux"
-import { listTeachers } from "../../../actions/teachers";
-import AddTeacher from "./AddTeacher";
+import { listTeachers, removeTeacher } from "actions/teachers"
+import AddTeacher from "./AddTeacher"
 
 class Teachers extends Component {
   componentWillMount () {
     this.props.listTeachers()
+    this.handleTeacherRemove = this.handleTeacherRemove.bind(this)
+  }
+
+  handleTeacherRemove (teacher) {
+    return e => {
+      e.preventDefault()
+      this.props.removeTeacher(teacher._id)
+    }
   }
   render() {
     return (
@@ -34,14 +41,28 @@ class Teachers extends Component {
                     }
                     </td>
                     <td>{teacher.email}</td>
+                    <td>
+                      {
+                        this.props.isCurrentUserOwner
+                        ? (
+                          <button
+                            onClick={this.handleTeacherRemove(teacher)}
+                            className="button button-danger button-small"
+                          >
+                            Remove
+                          </button>
+                        ) : null
+                      }
+                    </td>
                   </tr>
                 )
               })
             }
           </tbody>
         </table>
+        <hr/>
         {
-          this.props.quizApp.owner === this.props.currentUser._id
+          this.props.isCurrentUserOwner
           ? (
             <AddTeacher quizAppId={this.props.quizAppId} />
           ) : null
@@ -55,9 +76,9 @@ let mapStateToProps = (state, props) => {
   let quizAppId = props.match.params.quizAppId
   let quizApp = state.entities.quizApps[quizAppId]
   return {
-    currentUser: state.authentication.user,
     quizAppId: quizAppId,
     quizApp,
+    isCurrentUserOwner: state.authentication.user._id === quizApp.owner,
     teachers: quizApp.teachers.map(teacherId => state.entities.teachers[teacherId]).filter(i => i)
   }
 }
@@ -65,7 +86,8 @@ let mapStateToProps = (state, props) => {
 let mapDispatchToProps = (dispatch, props) => {
   let quizAppId = props.match.params.quizAppId
   return {
-    listTeachers: () => dispatch(listTeachers({quizAppId}))
+    listTeachers: () => dispatch(listTeachers({quizAppId})),
+    removeTeacher: (teacherId) => dispatch(removeTeacher({quizAppId, teacherId}))
   }
 }
 

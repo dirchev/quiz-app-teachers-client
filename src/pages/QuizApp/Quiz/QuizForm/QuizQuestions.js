@@ -60,10 +60,10 @@ class QuizQuestions extends Component {
           <div className="tabs-navigation">
             {
               this.props.questions.map((question, index) => {
-                let isActive = question._id === this.getSelectedQuestion()._id
+                let isActive = index === this.state.selectedQuestionIndex
                 return (
                   <button
-                    key={question._id}
+                    key={index}
                     className={`tabs-navigation-item ${isActive ? 'active' : ''}`}
                     onClick={this.selectQuestion(index)}
                   >

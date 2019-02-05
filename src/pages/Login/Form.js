@@ -77,7 +77,7 @@ class LoginForm extends Component {
           />
           <div className="controls separated">
             <Link to="/register" className="button button-primary button-link">Create an account</Link>
-            <button onClick={this.handleSubmit} className="button button-primary">Register</button>
+            <button onClick={this.handleSubmit} className="button button-primary">Login</button>
           </div>
         </form>
       </div>

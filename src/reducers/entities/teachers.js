@@ -8,6 +8,11 @@ const teachersEntities = (state = DEFAULT_STATE, action) => {
         ...state,
         ...arrayToEntities(action.payload.quizess)
       }
+    case 'TEACHER_ADD_SUCCESS':
+      return {
+        ...state,
+        ...arrayToEntities([action.payload.teacher])
+      }
     default:
       return state
   }

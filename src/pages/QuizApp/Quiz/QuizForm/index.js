@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import './index.scss'
 import QuizQuestions from "./QuizQuestions";
 import QuizSettings from "./QuizSettings";
-import { updateQuiz, saveQuiz } from "actions/quiz";
+import { updateQuiz, saveQuiz, deleteQuiz } from "actions/quiz";
 import initNewQuiz from "actions/initNewQuiz";
 import { connect } from "react-redux";
 
@@ -52,6 +52,7 @@ class QuizForm extends Component {
           quiz={this.props.quiz}
           onQuizChange={this.handleQuizChange}
           onQuizSave={this.handleQuizSave}
+          onQuizDelete={this.props.onQuizDelete}
         />
         <QuizQuestions
           questions={this.props.quiz.questions}
@@ -81,16 +82,26 @@ let mapStateToProps = (state, props) => {
 
 let mapDispatchToProps = (dispatch, props) => {
   let quizAppId = props.match.params.quizAppId
+  let quizId = props.match.params.quizId
+  let onQuizDelete
+
+  if (quizId) {
+    onQuizDelete =() => {
+      dispatch(deleteQuiz({quizId, quizAppId, history: props.history}))
+    }
+  }
+
   return {
     onQuizChange: (newQuizData) => {
-      dispatch(updateQuiz({quiz: newQuizData, quizAppId}))
+      dispatch(updateQuiz({quiz: newQuizData, quizAppId, history: props.history}))
     },
     onInitNewQuiz: (quizData, quizAppId) => {
       dispatch(initNewQuiz(quizData, quizAppId))
     },
     onQuizSave: (quizData) => {
-      dispatch(saveQuiz({quiz: quizData, quizAppId}))
-    }
+      dispatch(saveQuiz({quiz: quizData, quizAppId, history: props.history}))
+    },
+    onQuizDelete: onQuizDelete
   }
 }
 

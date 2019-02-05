@@ -69,4 +69,10 @@ class Question extends Component {
   }
 }
 
+Question.defaultProps = {
+  title: '',
+  content: '',
+  answers: []
+}
+
 export default Question

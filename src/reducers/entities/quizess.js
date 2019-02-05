@@ -1,4 +1,5 @@
 import arrayToEntities from "utils/arrayToEntities";
+import { omit } from "lodash"
 
 const DEFAULT_STATE = {}
 
@@ -18,14 +19,13 @@ const quizessEntities = (state = DEFAULT_STATE, action) => {
         }
       }
     case 'QUIZ_CREATE_SUCCESS':
-      let {['new']: removedValue, ...newState} = state
-      return {
-        ...newState,
+      return omit({
+        ...state,
         [action.payload.quiz._id]: {
           ...state[action.payload.quiz._id],
           ...action.payload.quiz
         }
-      }
+      }, 'new')
     case 'QUIZ_UPDATE_LOCAL':
       return {
         ...state,
@@ -34,6 +34,10 @@ const quizessEntities = (state = DEFAULT_STATE, action) => {
           ...action.payload.quiz
         }
       }
+    case 'QUIZ_DELETE_SUCCESS':
+      return omit({
+        ...state,
+      }, action.payload.quizId)
     default:
       return state
   }

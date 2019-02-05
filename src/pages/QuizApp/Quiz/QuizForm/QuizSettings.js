@@ -16,6 +16,7 @@ class QuizSettings extends Component {
     super(props)
     this.handleFieldChange = this.handleFieldChange.bind(this)
     this.handleSave = this.handleSave.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   handleFieldChange (field) {
@@ -31,6 +32,11 @@ class QuizSettings extends Component {
   handleSave (e) {
     e.preventDefault()
     this.props.onQuizSave()
+  }
+
+  handleDelete (e) {
+    e.preventDefault()
+    this.props.onQuizDelete()
   }
 
   render() {
@@ -94,14 +100,21 @@ class QuizSettings extends Component {
               placeholder="Put the name of the quiz here."
               id="quizDeadline"
               type="datetime-local"
-              value={this.props.quiz.deadline}
+              value={this.props.quiz.deadline || ''}
               onChange={this.handleFieldChange('deadline')}
               />
             <div className="input-message">The quiz will not be available after this date.</div>
           </div>
         </div>
-        <div className="controls">
-          <button onClick={this.handleSave} className="button button-primary">Save</button>
+        <div className="controls separated">
+          {
+            this.props.onQuizDelete
+            ? (
+              <button onClick={this.handleDelete} type="button" className="button button-danger button-small">Delete</button>
+            )
+            : null
+          }
+          <button onClick={this.handleSave} type="button" className="button button-primary button-small">Save</button>
         </div>
       </div>
     )
