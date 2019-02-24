@@ -69,3 +69,13 @@ export let deleteQuiz = ({quizAppId, quizId, history}) => async dispatch => {
     dispatch({ type: 'QUIZ_DELETE_ERROR', payload: {error: err.response.data} })
   }
 }
+
+export let publishQuiz = ({quizAppId, quizId}) => async dispatch => {
+  dispatch({ type: 'QUIZ_PUBLISH_REQUEST' })
+  try {
+    let {data} = await axios.post(quizess.publish({quizAppId, quizId}))
+    dispatch({ type: 'QUIZ_PUBLISH_SUCCESS', payload: {quiz: data} })
+  } catch (err) {
+    dispatch({ type: 'QUIZ_PUBLISH_ERROR', payload: {error: err.response.data} })
+  }
+}
