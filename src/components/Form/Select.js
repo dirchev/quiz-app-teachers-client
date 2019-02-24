@@ -21,17 +21,6 @@ class Input extends Component {
   }
 
   render () {
-    let inputItem = (
-      <input
-        readOnly={this.props.readOnly}
-        type={this.props.type}
-        className="input"
-        value={this.props.value}
-        placeholder={this.props.placeholder}
-        onChange={this.props.onChange}
-        id={this.inputId}
-      />
-    )
     return (
       <div
         className={cn('form-field', {
@@ -46,16 +35,21 @@ class Input extends Component {
             <label htmlFor={this.inputId} className="label">{this.props.label}</label>
           ) : null
         }
-        {
-          this.props.addition
-          ? (
-            <div className="input-with-addition">
-              {inputItem}
-              {this.props.addition(this.props)}
-            </div>
-          )
-          : inputItem
-        }
+        <select id={this.inputId} value={this.props.value} onChange={this.props.onChange} className="select">
+          {
+            this.props.placeholder
+            ? (
+                <option key='__placehlder' value={null}>{this.props.placeholder}</option>
+            ) : null
+          }
+          {
+            this.props.options.map((option) => {
+              return (
+                <option key={option.value} value={option.value}>{option.label}</option>
+              )
+            })
+          }
+        </select>
         {
           this.getInputMessage()
           ? (

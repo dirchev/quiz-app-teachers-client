@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import cn from 'classnames'
 import uuid from 'uuid'
 
-class Input extends Component {
+class Checkbox extends Component {
   constructor () {
     super()
     this.inputId = uuid.v4()
@@ -21,41 +21,24 @@ class Input extends Component {
   }
 
   render () {
-    let inputItem = (
-      <input
-        readOnly={this.props.readOnly}
-        type={this.props.type}
-        className="input"
-        value={this.props.value}
-        placeholder={this.props.placeholder}
-        onChange={this.props.onChange}
-        id={this.inputId}
-      />
-    )
     return (
       <div
-        className={cn('form-field', {
+        className={cn('form-field checkbox', {
+          'top-label': this.props.topLabel,
           'has-error': this.props.error,
           'is-successful': this.props.isSuccessful,
           'is-loading': this.props.isLoading,
         })}
       >
-        {
-          this.props.label
-          ? (
-            <label htmlFor={this.inputId} className="label">{this.props.label}</label>
-          ) : null
-        }
-        {
-          this.props.addition
-          ? (
-            <div className="input-with-addition">
-              {inputItem}
-              {this.props.addition(this.props)}
-            </div>
-          )
-          : inputItem
-        }
+        <label htmlFor={this.inputId} className="label">{this.props.label}</label>
+        <input
+          type="checkbox"
+          className="input"
+          checked={this.props.checked}
+          onChange={this.props.onChange}
+          id={this.inputId}
+        />
+        <div className="check"></div>
         {
           this.getInputMessage()
           ? (
@@ -69,4 +52,4 @@ class Input extends Component {
   }
 }
 
-export default Input
+export default Checkbox

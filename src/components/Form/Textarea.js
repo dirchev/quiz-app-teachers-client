@@ -22,22 +22,31 @@ class Textarea extends Component {
 
   render () {
     return (
-      <div className={cn('form-field', {
-        'has-error': this.props.error,
-        'is-successful': this.props.isSuccessful,
-        'is-loading': this.props.isLoading,
-      })}>
+      <div
+        className={cn('form-field', {
+          'has-error': this.props.error,
+          'is-successful': this.props.isSuccessful,
+          'is-loading': this.props.isLoading,
+        })}
+      >
         {
           this.props.label
           ? (
             <label htmlFor={this.TextareaId} className="label">{this.props.label}</label>
-          ) : null
+          )
+          : null
         }
-        <textarea type="text" className="input" value="something" id={this.TextareaId} />
+        <textarea
+          id={this.TextareaId}
+          className="input"
+          value={this.props.value}
+          placeholder={this.props.placeholder}
+          onChange={this.props.onChange}
+          />
         {
           this.getTextareaMessage()
           ? (
-            <div className="Textarea-message">
+            <div className="input-message">
               {this.getTextareaMessage()}
             </div>
           ) : null
