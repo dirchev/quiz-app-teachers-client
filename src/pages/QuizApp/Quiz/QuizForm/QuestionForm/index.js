@@ -1,7 +1,33 @@
 import React, { Component } from "react"
 import './index.scss'
+import uuid from 'uuid'
 
-import MultipleChoiceAnswersForm from './AnswersForm/MultipleChoice'
+import MultipleChoiceQuestionMultipleCorrect from './AnswersForm/MultipleChoiceQuestionMultipleCorrect'
+import MultipleChoiceQuestionOneCorrect from './AnswersForm/MultipleChoiceQuestionOneCorrect'
+import Input from "components/Form/Input";
+import Select from "components/Form/Select";
+import Textarea from "components/Form/Textarea";
+import FreeShortText from "./AnswersForm/FreeShortText";
+import FreeLongText from "./AnswersForm/FreeLongText";
+
+const QUESTION_TYPE_OPTIONS = [
+  {
+    value: 'MCQ_MULTIPLE_RIGHT',
+    label: 'Multiple Choice Question with Multiple Right Answers'
+  },
+  {
+    value: 'MCQ_ONE_RIGHT',
+    label: 'Multiple Choice Question with One Right Answer'
+  },
+  {
+    value: 'FREE_SHORT_TEXT',
+    label: 'Free short text'
+  },
+  {
+    value: 'FREE_LONG_TEXT',
+    label: 'Free long text'
+  },
+]
 
 class Question extends Component {
   constructor (props) {
@@ -20,10 +46,20 @@ class Question extends Component {
   handleFieldChange (field) {
     return event => {
       let value = event.target.value
-      this.emitQuestionChange({
+      let change = {
         [field]: value
-      })
+      }
+      if (field === 'type') {
+        change.answers = undefined
+      }
+      this.emitQuestionChange(change)
     }
+  }
+
+  componentDidCatch () {
+    this.emitQuestionChange({
+      answers: undefined
+    })
   }
 
   emitQuestionChange (updatedQuestion) {
@@ -38,41 +74,56 @@ class Question extends Component {
       <div>
         <h3 className="m-none">Question</h3>
         <form className="form">
-          <div className="form-field">
-            <label className="label" htmlFor="questiontitle">Question Title</label>
-            <input
-              className="input"
-              placeholder="Put question title here"
-              id="questiontitle"
-              type="text"
-              onChange={this.handleFieldChange('title')}
-              value={this.props.title}
-              />
-          </div>
-          <div className="form-field">
-            <label className="label" htmlFor="questionContent">Question Content</label>
-            <textarea
-              className="input"
-              placeholder="Put the content of the question."
-              id="questionContent"
-              type="text"
-              onChange={this.handleFieldChange('content')}
-              value={this.props.content}
-              />
-            <div className="input-message">Put the actual question that has to be answered here.</div>
-          </div>
+          <Input
+            label="Question Title"
+            placeholder="Put question title here"
+            type="text"
+            onChange={this.handleFieldChange('title')}
+            value={this.props.title}
+            />
+          <Textarea
+            label="Question Content"
+            placeholder="Put the content of the question here"
+            onChange={this.handleFieldChange('content')}
+            value={this.props.content}
+            helpText="Put the actual question that has to be answered here."
+          />
+          <Select
+            label="Question Type"
+            placeholder="Select question type."
+            onChange={this.handleFieldChange('type')}
+            value={this.props.type}
+            options={QUESTION_TYPE_OPTIONS}
+            helpText="Depending on the question type, answers will be presented differently"
+          />
           <hr/>
-          <MultipleChoiceAnswersForm answers={this.props.answers} onAnswersChange={this.handleAnswersChange} />
+          {
+            this.renderAnswersForm()
+          }
         </form>
       </div>
     )
   }
+
+  renderAnswersForm () {
+    if (this.props.type === 'MCQ_MULTIPLE_RIGHT') {
+      return <MultipleChoiceQuestionMultipleCorrect answers={this.props.answers} onAnswersChange={this.handleAnswersChange} />
+    } else if (this.props.type === 'MCQ_ONE_RIGHT') {
+      return <MultipleChoiceQuestionOneCorrect answers={this.props.answers} onAnswersChange={this.handleAnswersChange} />
+    } else if (this.props.type === 'FREE_SHORT_TEXT') {
+      return <FreeShortText />
+    } else if (this.props.type === 'FREE_LONG_TEXT') {
+      return <FreeLongText />
+    }
+    return null
+  }
 }
 
 Question.defaultProps = {
+  _id: uuid.v4(),
   title: '',
   content: '',
-  answers: []
+  type: '',
 }
 
 export default Question
