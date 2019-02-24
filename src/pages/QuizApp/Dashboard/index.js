@@ -2,16 +2,24 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import './index.scss'
 import { connect } from "react-redux";
-import { loadQuizess } from "actions/quiz"
+import { loadQuizess, publishQuiz } from "actions/quiz"
 
 class Dashboard extends Component {
   constructor () {
     super()
 
+    this.handlePublishQuiz = this.handlePublishQuiz.bind(this)
     this.renderQuiz = this.renderQuiz.bind(this)
   }
   componentWillMount () {
     this.props.listQuizess()
+  }
+
+  handlePublishQuiz (quizId) {
+    return (e) => {
+      e.preventDefault()
+      this.props.publishQuiz(quizId)
+    }
   }
 
   render() {
@@ -48,37 +56,16 @@ class Dashboard extends Component {
         <div className="description">
           {quiz.description}
         </div>
-        {/* <div className="stats">
-          {
-            quiz.stats.completions
-            ? (
-              <Link to="/quiz1" className="stats-item">
-                <div className="name">Completions</div>
-                <div className="value">{quiz.stats.completions.value} / {quiz.stats.completions.total}</div>
-              </Link>
-            ) : null
-          }
-          {
-            quiz.stats.averageMark
-            ? (
-              <div className="stats-item">
-                <div className="name">Average Mark</div>
-                <div className="value">{quiz.stats.averageMark}</div>
-              </div>
-            ) : null
-          }
-          {
-            quiz.stats.needsGrading
-            ? (
-              <Link to="/somethiungs" className="stats-item">
-                <div className="name">Not Graded Attempts</div>
-                <div className="value">{quiz.stats.needsGrading}</div>
-              </Link>
-            ) : null
-          }
-        </div> */}
         <div className="controls">
-          <button className="button button-grey button-small button-outline">View attempts</button>
+          {
+            quiz.published
+            ? (
+              <button className="button button-grey button-small button-outline">View attempts</button>
+            )
+            : (
+              <button onClick={this.handlePublishQuiz(quiz._id)} className="button button-primary button-small button-outline">Publish</button>
+            )
+          }
           <Link to={`/quiz-app/${this.props.quizAppId}/quiz/${quiz._id}`} className="button button-blue button-small">Edit Quiz</Link>
         </div>
       </div>
@@ -97,7 +84,8 @@ let mapStateToProps = (state, props) => {
 let mapDispatchToProps = (dispatch, props) => {
   let quizAppId = props.match.params.quizAppId
   return {
-    listQuizess: () => dispatch(loadQuizess({quizAppId}))
+    listQuizess: () => dispatch(loadQuizess({quizAppId})),
+    publishQuiz: (quizId) => dispatch(publishQuiz({quizId, quizAppId}))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
