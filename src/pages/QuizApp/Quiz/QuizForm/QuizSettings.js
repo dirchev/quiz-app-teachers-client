@@ -1,5 +1,8 @@
 import React, { Component } from "react"
 import './index.scss'
+import Input from "../../../../components/Form/Input";
+import Textarea from "../../../../components/Form/Textarea";
+import Checkbox from "../../../../components/Form/Checkbox";
 
 let getValueForField = function (field, event) {
   if (field === 'isMandatory') {
@@ -44,67 +47,49 @@ class QuizSettings extends Component {
       <div className="quiz-create-form box">
         <h1 className="m-none">Quiz Details</h1>
         <div className="form">
-          <div className="form-field">
-            <label className="label" htmlFor="quizName">Quiz Name</label>
-            <input
-              className="input"
-              placeholder="Put the name of the quiz here."
-              id="quizName"
-              type="text"
-              value={this.props.quiz.name}
-              onChange={this.handleFieldChange('name')}
-              />
-            <div className="input-message">For example: "Mock Exam Test"</div>
-          </div>
-          <div className="form-field">
-            <label className="label" htmlFor="quizDescription">Quiz Description</label>
-            <textarea
-              className="input"
-              placeholder="Put description of the quiz here."
-              id="quizDescription"
-              value={this.props.quiz.description}
-              onChange={this.handleFieldChange('description')}
-              />
-            <div className="input-message">Explain the purpose of the quiz for example, what study material it covers.</div>
-          </div>
-          <div className="form-field checkbox">
-            <label className="label" htmlFor="quizIsMandatory">
-              Is mandatory
-            </label>
-            <input
-              className="input"
-              type="checkbox"
-              id="quizIsMandatory"
-              value={this.props.quiz.isMandatory}
-              onChange={this.handleFieldChange('isMandatory')}
-            />
-            <div className="check"></div>
-            <div className="input-message">Setting the quiz as mandatory will require every student to do it.</div>
-          </div>
-          <div className="form-field">
-            <label className="label" htmlFor="quizNoOfAttempts">Number of attempts</label>
-            <input
-              className="input"
-              placeholder="Put the name of the quiz here."
-              id="quizNoOfAttempts"
-              type="number"
-              value={this.props.quiz.noOfAttempts}
-              onChange={this.handleFieldChange('noOfAttempts')}
-              />
-            <div className="input-message">Set to 0 for unlimited attempts.</div>
-          </div>
-          <div className="form-field">
-            <label className="label" htmlFor="quizDeadline">Deadline</label>
-            <input
-              className="input"
-              placeholder="Put the name of the quiz here."
-              id="quizDeadline"
-              type="datetime-local"
-              value={this.props.quiz.deadline || ''}
-              onChange={this.handleFieldChange('deadline')}
-              />
-            <div className="input-message">The quiz will not be available after this date.</div>
-          </div>
+          <Input
+            label="Quiz Name"
+            placeholder="Put the name of the quiz here."
+            type="text"
+            value={this.props.quiz.name}
+            onChange={this.handleFieldChange('name')}
+            helpText={'For example: "Mock Exam Test"'}
+          />
+          <Textarea
+            label="Quiz Description"
+            placeholder="Put description of the quiz here"
+            value={this.props.quiz.description}
+            onChange={this.handleFieldChange('description')}
+            helpText={"Explain the purpose of the quiz for example, what study material it covers."}
+          />
+          <Checkbox
+            label="Is mandatory"
+            value={this.props.quiz.isMandatory}
+            onChange={this.handleFieldChange('isMandatory')}
+            helpText="Setting the quiz as mandatory will require every student to do it."
+          />
+          <Input
+            label="Number of Attempts"
+            placeholder="Put name of the quiz here."
+            type="number"
+            value={this.props.quiz.noOfAttempts}
+            onChange={this.handleFieldChange('noOfAttempts')}
+            helpText="Set to 0 for unlimited attempts."
+          />
+          <Input
+            label="Deadline"
+            type="datetime-local"
+            value={this.props.quiz.deadline || ''}
+            onChange={this.handleFieldChange('deadline')}
+            helpText="The quiz will not be available after this date."
+          />
+          <Input
+            label="Time Limit"
+            type="number"
+            value={this.props.quiz.timeLimit || 0}
+            onChange={this.handleFieldChange('timeLimit')}
+            helpText="Time limit (in minutes) to complete the quiz. Leave empty for unlimited."
+          />
         </div>
         <div className="controls separated">
           {
