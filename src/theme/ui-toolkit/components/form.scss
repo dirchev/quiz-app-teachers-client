@@ -14,14 +14,17 @@
     display: grid;
     grid-template-areas: "label" "input" "message";
     grid-template-columns: auto;
-    grid-row-gap: .2em;
     margin-bottom: 10px;
 
     &.checkbox, &.radio {
       grid-template-areas: "input label" "input message";
-      grid-template-columns: max-content auto;
+      grid-template-columns: min-content auto;
       grid-column-gap: .5em;
       align-items: center;
+
+      &.top-label {
+        grid-template-areas: "label label" "input message";
+      }
 
       .label {
         position: relative;
@@ -65,8 +68,8 @@
           align-self: center;
           border: solid 1px map-get($grey, 500);
           position: relative;
-          height: 1.3em;
-          width: 1.3em;
+          height: 1.6em;
+          width: 1.6em;
         }
       }
 
@@ -94,8 +97,8 @@
           align-self: center;
           border: solid 1px map-get($grey, 500);
           position: relative;
-          height: 1.3em;
-          width: 1.3em;
+          height: 1.7em;
+          width: 1.7em;
           border-radius: 50%;
         }
 
@@ -108,7 +111,9 @@
       padding: 0;
     }
 
-    & > .input, & > & > .input-with-addition {
+    & > .input,
+    & > & > .input-with-addition,
+    & > .select {
       grid-area: input;
       align-items: center;
 
@@ -117,11 +122,16 @@
       }
     }
 
+    & > .input-groups {
+      grid-area: input;
+    }
+
     .input {
       margin: 0;
       padding: .5em .6em;
       display: inline-block;
       border: 1px solid map-get(map-get($map: $colorPalettes, $key: grey), 400);
+      background-color: map-get(map-get($map: $colorPalettes, $key: grey), 50);
       vertical-align: middle;
       box-sizing: border-box;
 
@@ -129,6 +139,17 @@
         background-color: map-get($grey, 300);
         cursor: not-allowed;
       }
+    }
+
+    select.select {
+      margin: 0;
+      padding: .5em .6em;
+      display: inline-block;
+      border: 1px solid map-get(map-get($map: $colorPalettes, $key: grey), 400);
+      vertical-align: middle;
+      box-sizing: border-box;
+      background-color: map-get(map-get($map: $colorPalettes, $key: grey), 50);
+
     }
 
     input.input {
@@ -147,6 +168,26 @@
       color: #686868;
     }
 
+    .input-groups {
+      display: flex;
+
+      .input-group {
+        flex-grow: 1;
+        align-items: baseline;
+        display: flex;
+
+        .input {
+          min-width: 0;
+          flex: 1;
+        }
+
+        .label {
+          font-size: .8em;
+          flex: 1;
+        }
+      }
+    }
+
     .input-with-addition {
       display: flex;
 
@@ -160,11 +201,15 @@
         align-items: center;
         font-size: .8em;
         padding: 0 1em 0 .7em;
-        border: 1px solid map-get(map-get($map: $colorPalettes, $key: grey), 400);
         border-left: none;
-        background-color: map-get($grey, 300);
+        &:not(.button) {
+          border: 1px solid map-get(map-get($map: $colorPalettes, $key: grey), 400);
+          background-color: map-get($grey, 300);
+        }
         border-top-right-radius: .2em;
         border-bottom-right-radius: .2em;
+        margin: 0;
+        box-shadow: none;
 
         &.left {
           border-right: none;
