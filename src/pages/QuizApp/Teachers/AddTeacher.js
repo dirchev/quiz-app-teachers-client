@@ -1,8 +1,7 @@
 import React, { Component } from "react"
-import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import { addTeacher } from "actions/teachers"
-import { getAllErrorMessages } from "../../../utils/errorMessages";
+import { getAllErrorMessages } from "utils/errorMessages";
 
 class AddTeacher extends Component {
   constructor () {

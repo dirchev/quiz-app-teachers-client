@@ -9,7 +9,7 @@ import QuizAppCreate from './pages/QuizAppCreate'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Showcase from './pages/Showcase'
 import Navigation from './components/Navigation'
-import { Provider, connect } from 'react-redux'
+import { Provider } from 'react-redux'
 import PrivateRoute from './components/PrivateRoute'
 import store from './store'
 

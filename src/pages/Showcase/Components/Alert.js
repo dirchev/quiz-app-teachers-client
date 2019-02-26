@@ -35,14 +35,14 @@ class Alert extends Component {
 
         <div className="code-example">
           <div className="view">
-            <div className="alert alert-blue">A simple alert with a <a href="#" className="alert-link">link</a></div>
+            <div className="alert alert-blue">A simple alert with a <a href="/" className="alert-link">link</a></div>
           </div>
           <div className="description">
             There is also support for a link in a alert
           </div>
           <pre className="code">
             {`
-            <div className="alert alert-blue">A simple alert with a <a href="#" className="alert-link">link</a></div>
+            <div className="alert alert-blue">A simple alert with a <a href="/" className="alert-link">link</a></div>
             `}
           </pre>
         </div>

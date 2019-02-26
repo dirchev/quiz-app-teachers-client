@@ -10,7 +10,7 @@ class Tile extends Component {
             {
               window.colors.map((color) => {
                 return (
-                  <a href="#" key={color} className={`tile tile-${color}`}>Some Long Long Text Here</a>
+                  <a href="/" key={color} className={`tile tile-${color}`}>Some Long Long Text Here</a>
                 )
               })
             }
@@ -21,7 +21,7 @@ class Tile extends Component {
           <pre className="code">
           {
               window.colors.map((color) => {
-                return `<a href="#" className="tile tile-${color}">Some Long Long Text Here</a>`
+                return `<a href="/" className="tile tile-${color}">Some Long Long Text Here</a>`
               }).join('\n')
             }
           </pre>
@@ -53,7 +53,7 @@ class Tile extends Component {
               <h3>Some Title</h3>
               <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur sapiente corrupti, dolorum dolor minus autem nobis cupiditate dolorem ut quod, voluptas soluta molestiae modi doloremque illum dicta porro eos maiores?</p>
               <div className="controls">
-                <a href="#" className="button button-blue button-outline">Button</a>
+                <a href="/" className="button button-blue button-outline">Button</a>
               </div>
             </div>
           </div>
@@ -66,7 +66,7 @@ class Tile extends Component {
               <h3>Some Title</h3>
               <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur sapiente corrupti, dolorum dolor minus autem nobis cupiditate dolorem ut quod, voluptas soluta molestiae modi doloremque illum dicta porro eos maiores?</p>
               <div className="controls">
-                <a href="#" className="button button-blue button-outline">Button</a>
+                <a href="/" className="button button-blue button-outline">Button</a>
               </div>
             </div>
             `}

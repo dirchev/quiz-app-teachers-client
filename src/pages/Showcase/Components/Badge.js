@@ -58,7 +58,7 @@ class Badge extends Component {
             {
               window.colors.map((color) => {
                 return (
-                  <a href="#" key={color} className={`badge badge-${color}`}>new</a>
+                  <a href="/" key={color} className={`badge badge-${color}`}>new</a>
                 )
               })
             }
@@ -69,7 +69,7 @@ class Badge extends Component {
           <pre className="code">
           {
               window.colors.map((color) => {
-                return `<a href="#" className="badge badge-${color}">new</a>`
+                return `<a href="/" className="badge badge-${color}">new</a>`
               }).join('\n')
             }
           </pre>

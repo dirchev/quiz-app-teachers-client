@@ -1,6 +1,4 @@
 import React, { Component } from "react"
-import Input from "components/Form/Input"
-import shortid from "shortid"
 
 class DangerZone extends Component {
   constructor () {

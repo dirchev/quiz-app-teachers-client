@@ -21,10 +21,10 @@ class Sidebar extends Component {
                       </div>
                     </div>
                     <ul className="navigation">
-                      <li className="navigation-item selected"><a href="#">Profile</a></li>
-                      <li className="navigation-item"><a href="#">Grades</a></li>
-                      <li className="navigation-item"><a href="#">Something</a></li>
-                      <li className="navigation-item"><a href="#">Log out</a></li>
+                      <li className="navigation-item selected"><a href="/">Profile</a></li>
+                      <li className="navigation-item"><a href="/">Grades</a></li>
+                      <li className="navigation-item"><a href="/">Something</a></li>
+                      <li className="navigation-item"><a href="/">Log out</a></li>
                     </ul>
                   </div>
                 )
@@ -47,10 +47,10 @@ class Sidebar extends Component {
                 </div>
               </div>
               <ul className="navigation">
-                <li><a href="#" className="navigation-item">Profile</a></li>
-                <li><a href="#" className="navigation-item">Grades</a></li>
-                <li><a href="#" className="navigation-item">Something</a></li>
-                <li><a href="#" className="navigation-item">Log out</a></li>
+                <li><a href="/" className="navigation-item">Profile</a></li>
+                <li><a href="/" className="navigation-item">Grades</a></li>
+                <li><a href="/" className="navigation-item">Something</a></li>
+                <li><a href="/" className="navigation-item">Log out</a></li>
               </ul>
             </div>
             `}

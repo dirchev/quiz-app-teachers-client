@@ -127,11 +127,11 @@ class Assessment extends Component {
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis rem iure nam doloremque, veritatis omnis odio tenetur repudiandae veniam magni voluptatibus sed exercitationem, temporibus eaque, ipsam quo enim accusamus velit.
               </div>
               <div className="stats">
-                <a href="#" className="stats-item">
+                <a href="/" className="stats-item">
                   <div className="name">Completions</div>
                   <div className="value">15 / 30</div>
                 </a>
-                <a href="#" className="stats-item">
+                <a href="/" className="stats-item">
                   <div className="name">Average Mark</div>
                   <div className="value">65% / 100%</div>
                 </a>
@@ -159,11 +159,11 @@ class Assessment extends Component {
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis rem iure nam doloremque, veritatis omnis odio tenetur repudiandae veniam magni voluptatibus sed exercitationem, temporibus eaque, ipsam quo enim accusamus velit.
               </div>
               <div className="stats">
-                <a href="#" className="stats-item">
+                <a href="/" className="stats-item">
                   <div className="name">Completions</div>
                   <div className="value">15 / 30</div>
                 </a>
-                <a href="#" className="stats-item">
+                <a href="/" className="stats-item">
                   <div className="name">Average Mark</div>
                   <div className="value">65% / 100%</div>
                 </a>

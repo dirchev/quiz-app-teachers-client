@@ -18,9 +18,9 @@ class Navbar extends Component {
                       Search Bar
                     </div>
                     <div className="right navbar-items">
-                      <a href="#" className="navbar-item active">Home</a>
-                      <a href="#" className="navbar-item">Students</a>
-                      <a href="#" className="navbar-item">Profile</a>
+                      <a href="/" className="navbar-item active">Home</a>
+                      <a href="/" className="navbar-item">Students</a>
+                      <a href="/" className="navbar-item">Profile</a>
                     </div>
                   </div>
                 )
@@ -40,9 +40,9 @@ class Navbar extends Component {
                   Search Bar
                 </div>
                 <div className="right navbar-items">
-                  <a href="#" className="navbar-item active">Home</a>
-                  <a href="#" className="navbar-item">Students</a>
-                  <a href="#" className="navbar-item">Profile</a>
+                  <a href="/" className="navbar-item active">Home</a>
+                  <a href="/" className="navbar-item">Students</a>
+                  <a href="/" className="navbar-item">Profile</a>
                 </div>
               </div>
             `}

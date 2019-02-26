@@ -33,7 +33,7 @@ class Button extends Component {
             {
               window.colors.map((color) => {
                 return (
-                  <a key={color} href="#" className={`button button-${color}`}>{color}</a>
+                  <a key={color} href="/" className={`button button-${color}`}>{color}</a>
                 )
               })
             }
@@ -44,7 +44,7 @@ class Button extends Component {
           <pre className="code">
             {
               window.colors.map((color) => {
-                return `<a href="#" className="button button-${color}">${color}</a>`
+                return `<a href="/" className="button button-${color}">${color}</a>`
               }).join('\n')
             }
           </pre>
@@ -55,7 +55,7 @@ class Button extends Component {
             {
               window.colors.map((color) => {
                 return (
-                  <a key={color} href="#" className={`button button-outline button-${color}`}>{color}</a>
+                  <a key={color} href="/" className={`button button-outline button-${color}`}>{color}</a>
                 )
               })
             }
@@ -66,7 +66,7 @@ class Button extends Component {
           <pre className="code">
             {
               window.colors.map((color) => {
-                return `<a href="#" className="button button-outline button-${color}">${color}</a>`
+                return `<a href="/" className="button button-outline button-${color}">${color}</a>`
               }).join('\n')
             }
           </pre>
@@ -117,8 +117,8 @@ class Button extends Component {
           <div className="view">
             <button className="button button-blue" disabled>Disabled Button</button>
             <button className="button button-blue button-outline" disabled>Disabled Button</button>
-            <a href="#" className="button button-blue disabled">Disabled Link</a>
-            <a href="#" className="button button-blue button-outline disabled">Disabled Link</a>
+            <a href="/" className="button button-blue disabled">Disabled Link</a>
+            <a href="/" className="button button-blue button-outline disabled">Disabled Link</a>
           </div>
           <div className="description">
             Disabled buttons
