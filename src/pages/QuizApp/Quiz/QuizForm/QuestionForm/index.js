@@ -88,6 +88,16 @@ class Question extends Component {
             value={this.props.content}
             helpText="Put the actual question that has to be answered here."
           />
+          <Input
+            label="Points"
+            type="number"
+            min={0}
+            max={100}
+            step={1}
+            placeholder="Put max number of points to be given for this question"
+            onChange={this.handleFieldChange('points')}
+            value={this.props.points}
+          />
           <Select
             label="Question Type"
             placeholder="Select question type."
@@ -124,6 +134,7 @@ Question.defaultProps = {
   title: '',
   content: '',
   type: '',
+  points: 0,
 }
 
 export default Question

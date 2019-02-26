@@ -29,6 +29,9 @@ class Input extends Component {
         value={this.props.value}
         placeholder={this.props.placeholder}
         onChange={this.props.onChange}
+        min={this.props.min}
+        max={this.props.max}
+        step={this.props.step}
         id={this.inputId}
       />
     )
