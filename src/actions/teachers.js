@@ -7,7 +7,7 @@ export let listTeachers = ({quizAppId}) => async dispatch => {
   })
   try {
     let {data} = await axios.get(teachers.list({quizAppId}))
-    dispatch({ type: 'TEACHERS_LIST_SUCCESS', payload: {quizess: data, quizAppId: quizAppId} })
+    dispatch({ type: 'TEACHERS_LIST_SUCCESS', payload: {teachers: data, quizAppId: quizAppId} })
   } catch (err) {
     dispatch({ type: 'TEACHERS_LIST_ERROR', payload: {error: err.response.data} })
   }

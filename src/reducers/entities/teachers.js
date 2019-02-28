@@ -6,7 +6,7 @@ const teachersEntities = (state = DEFAULT_STATE, action) => {
     case 'TEACHERS_LIST_SUCCESS':
       return {
         ...state,
-        ...arrayToEntities(action.payload.quizess)
+        ...arrayToEntities(action.payload.teachers)
       }
     case 'TEACHER_ADD_SUCCESS':
       return {
