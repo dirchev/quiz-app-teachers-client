@@ -23,3 +23,8 @@ export let teachers = {
   add: ({quizAppId}) => `${root}/api/quiz-app/${quizAppId}/teachers`,
   delete: ({quizAppId, teacherId}) => `${root}/api/quiz-app/${quizAppId}/teachers/${teacherId}`,
 }
+
+export let students = {
+  list: ({quizAppId}) => `${root}/api/quiz-app/${quizAppId}/students`,
+  delete: ({quizAppId, studentId}) => `${root}/api/quiz-app/${quizAppId}/students/${studentId}`,
+}
