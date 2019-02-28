@@ -47,6 +47,14 @@ const quizess = (state = DEFAULT_STATE, action) => {
           quizess: state[action.payload.quizAppId].quizess.filter(q => q !== action.payload.quizId)
         }
       }
+    case 'TEACHERS_LIST_SUCCESS':
+      return {
+        ...state,
+        [action.payload.quizAppId]: {
+          ...state[action.payload.quizAppId],
+          teachers: action.payload.teachers.map(({_id}) => _id)
+        }
+      }
     case 'TEACHER_REMOVE_SUCCESS':
       return {
         ...state,
