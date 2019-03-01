@@ -1,8 +1,24 @@
 import React, { Component } from "react"
-import { Link } from "react-router-dom"
 import { connect } from "react-redux"
+import { listStudents, removeStudent } from "actions/students"
 
 class Students extends Component {
+  constructor () {
+    super()
+    this.handleStudentRemove = this.handleStudentRemove.bind(this)
+  }
+
+  componentWillMount () {
+    this.props.listStudents()
+  }
+
+  handleStudentRemove (student) {
+    return e => {
+      e.preventDefault()
+      this.props.removeStudent(student._id)
+    }
+  }
+
   render() {
     return (
       <div>
@@ -10,7 +26,6 @@ class Students extends Component {
         <table className="table table-stripped">
           <thead className="thead-dark">
             <tr>
-              <td>#</td>
               <td>Name</td>
               <td>Email</td>
               <td>Actions</td>
@@ -20,12 +35,21 @@ class Students extends Component {
             {
               this.props.students.map((student) => {
                 return (
-                  <tr>
-                    <td>{student._id}</td>
+                  <tr key={student._id}>
                     <td>{student.name}</td>
                     <td>{student.email}</td>
                     <td>
-                      <Link to={`/quiz-app/${this.props.quizAppId}/students/${student._id}`} className="button button-small button-primary">Open</Link>
+                      {
+                        this.props.isCurrentUserOwner
+                        ? (
+                          <button
+                            onClick={this.handleStudentRemove(student)}
+                            className="button button-danger button-small"
+                          >
+                            Remove
+                          </button>
+                        ) : null
+                      }
                     </td>
                   </tr>
                 )
@@ -43,9 +67,18 @@ let mapStateToProps = (state, props) => {
   let quizApp = state.entities.quizApps[quizAppId]
   return {
     quizAppId: quizAppId,
+    quizApp,
+    isCurrentUserOwner: state.authentication.user._id === quizApp.owner,
     students: quizApp.students.map(studentId => state.entities.students[studentId]).filter(i => i)
   }
 }
 
+let mapDispatchToProps = (dispatch, props) => {
+  let quizAppId = props.match.params.quizAppId
+  return {
+    listStudents: () => dispatch(listStudents({quizAppId})),
+    removeStudent: (studentId) => dispatch(removeStudent({quizAppId, studentId}))
+  }
+}
 
-export default connect(mapStateToProps)(Students)
+export default connect(mapStateToProps, mapDispatchToProps)(Students)

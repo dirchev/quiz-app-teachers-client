@@ -4,9 +4,13 @@ import { listTeachers, removeTeacher } from "actions/teachers"
 import AddTeacher from "./AddTeacher"
 
 class Teachers extends Component {
+  constructor () {
+    super()
+    this.handleTeacherRemove = this.handleTeacherRemove.bind(this)
+  }
+
   componentWillMount () {
     this.props.listTeachers()
-    this.handleTeacherRemove = this.handleTeacherRemove.bind(this)
   }
 
   handleTeacherRemove (teacher) {

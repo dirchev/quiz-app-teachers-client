@@ -47,12 +47,36 @@ const quizess = (state = DEFAULT_STATE, action) => {
           quizess: state[action.payload.quizAppId].quizess.filter(q => q !== action.payload.quizId)
         }
       }
+    case 'TEACHERS_LIST_SUCCESS':
+      return {
+        ...state,
+        [action.payload.quizAppId]: {
+          ...state[action.payload.quizAppId],
+          teachers: action.payload.teachers.map(({_id}) => _id)
+        }
+      }
     case 'TEACHER_REMOVE_SUCCESS':
       return {
         ...state,
         [action.payload.quizAppId]: {
           ...state[action.payload.quizAppId],
           teachers: state[action.payload.quizAppId].teachers.filter(q => q !== action.payload.teacherId)
+        }
+      }
+    case 'STUDENTS_LIST_SUCCESS':
+      return {
+        ...state,
+        [action.payload.quizAppId]: {
+          ...state[action.payload.quizAppId],
+          students: action.payload.students.map(({_id}) => _id)
+        }
+      }
+    case 'STUDENT_REMOVE_SUCCESS':
+      return {
+        ...state,
+        [action.payload.quizAppId]: {
+          ...state[action.payload.quizAppId],
+          students: state[action.payload.quizAppId].students.filter(q => q !== action.payload.studentId)
         }
       }
     case 'QUIZ_APPS_CREATE_SUCCESS':
