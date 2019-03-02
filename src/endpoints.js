@@ -28,3 +28,9 @@ export let students = {
   list: ({quizAppId}) => `${root}/api/quiz-app/${quizAppId}/students`,
   delete: ({quizAppId, studentId}) => `${root}/api/quiz-app/${quizAppId}/students/${studentId}`,
 }
+
+export let quizEngagements = {
+  list: ({quizId, quizAppId}) => `${root}/api/quiz-app/${quizAppId}/quizess/${quizId}/quiz-engagements`,
+  update: ({quizId, quizAppId, quizEngagementId}) => `${root}/api/quiz-app/${quizAppId}/quizess/${quizId}/quiz-engagements/${quizEngagementId}`,
+  finishMarking: ({quizId, quizAppId, quizEngagementId}) => `${root}/api/quiz-app/${quizAppId}/quizess/${quizId}/quiz-engagements/${quizEngagementId}/finish-marking`,
+}
