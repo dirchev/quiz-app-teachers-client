@@ -39,6 +39,14 @@ const quizessEntities = (state = DEFAULT_STATE, action) => {
       return omit({
         ...state,
       }, action.payload.quizId)
+    case 'QUIZ_ENGAGEMENTS_LIST_SUCCESS':
+      return {
+        ...state,
+        [action.payload.quizId]: {
+          ...state[action.payload.quizId],
+          quizEngagements: action.payload.quizEngagements.map(({_id}) => _id)
+        }
+      }
     default:
       return state
   }
