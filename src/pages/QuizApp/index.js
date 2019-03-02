@@ -8,6 +8,8 @@ import Students from "./Students"
 import Teachers from "./Teachers"
 import Settings from "./Settings"
 import QuizForm from "./Quiz/QuizForm"
+import QuizEngagements from "./QuizEngagements"
+import QuizEngagement from "./QuizEngagement"
 
 import StudentSidebar from "./Sidebars/Student"
 import StudentProfile from "./StudentProfile"
@@ -28,7 +30,9 @@ class QuizApp extends Component {
 
             <Switch>
               <Route path={`${this.props.match.path}/quiz/create`} component={QuizForm} />
-              <Route path={`${this.props.match.path}/quiz/:quizId`} component={QuizForm} />
+              <Route exact path={`${this.props.match.path}/quiz/:quizId`} component={QuizForm} />
+              <Route exact path={`${this.props.match.path}/quiz/:quizId/engagements`} component={QuizEngagements} />
+              <Route exact path={`${this.props.match.path}/quiz/:quizId/engagements/:quizEngagementId`} component={QuizEngagement} />
             </Switch>
           </div>
           <Route path={`${this.props.match.path}/students/:studentId`} component={StudentSidebar} />
