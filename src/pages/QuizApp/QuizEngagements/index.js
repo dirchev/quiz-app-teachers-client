@@ -4,6 +4,7 @@ import { listQuizEngagements } from "actions/quizEngagements"
 import { format } from "date-fns";
 import { Link } from "react-router-dom"
 import { groupBy } from 'lodash'
+import QuizReleaseMarksButton from './QuizReleaseMarksButton'
 
 class QuizEngagements extends Component {
   componentWillMount () {
@@ -20,7 +21,10 @@ class QuizEngagements extends Component {
     let quizEngagementsGrouped = this.getQuizEngagementsGrouped()
     return (
       <div>
+      <div className="title-header">
         <h1>Quiz Engagements <span className="subhead">({this.props.quizEngagements.length})</span></h1>
+        <QuizReleaseMarksButton quizId={this.props.quizId} quizAppId={this.props.quizAppId} />
+      </div>
         <table className="table table-bordered table-small">
           <thead className="thead-dark">
             <tr>
