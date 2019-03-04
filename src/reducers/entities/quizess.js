@@ -28,6 +28,7 @@ const quizessEntities = (state = DEFAULT_STATE, action) => {
       }, 'new')
     case 'QUIZ_UPDATE_LOCAL':
     case 'QUIZ_PUBLISH_SUCCESS':
+    case 'QUIZ_RELEASE_MARKS_SUCCESS':
       return {
         ...state,
         [action.payload.quiz._id]: {

@@ -79,3 +79,13 @@ export let publishQuiz = ({quizAppId, quizId}) => async dispatch => {
     dispatch({ type: 'QUIZ_PUBLISH_ERROR', payload: {error: err.response.data} })
   }
 }
+
+export let quizReleaseMarks = ({quizAppId, quizId}) => async dispatch => {
+  dispatch({ type: 'QUIZ_RELEASE_MARKS_REQUEST' })
+  try {
+    let {data} = await axios.post(quizess.releaseMarks({quizAppId, quizId}))
+    dispatch({ type: 'QUIZ_RELEASE_MARKS_SUCCESS', payload: {quiz: data} })
+  } catch (err) {
+    dispatch({ type: 'QUIZ_RELEASE_MARKS_ERROR', payload: {error: err.response.data} })
+  }
+}
