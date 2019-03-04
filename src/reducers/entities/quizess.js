@@ -28,6 +28,7 @@ const quizessEntities = (state = DEFAULT_STATE, action) => {
       }, 'new')
     case 'QUIZ_UPDATE_LOCAL':
     case 'QUIZ_PUBLISH_SUCCESS':
+    case 'QUIZ_RELEASE_MARKS_SUCCESS':
       return {
         ...state,
         [action.payload.quiz._id]: {
@@ -39,6 +40,14 @@ const quizessEntities = (state = DEFAULT_STATE, action) => {
       return omit({
         ...state,
       }, action.payload.quizId)
+    case 'QUIZ_ENGAGEMENTS_LIST_SUCCESS':
+      return {
+        ...state,
+        [action.payload.quizId]: {
+          ...state[action.payload.quizId],
+          quizEngagements: action.payload.quizEngagements.map(({_id}) => _id)
+        }
+      }
     default:
       return state
   }

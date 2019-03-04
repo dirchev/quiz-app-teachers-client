@@ -1,0 +1,79 @@
+.quiz-engagement {
+  .item {
+    margin-bottom: 1em;
+    border: solid 1px map-get($grey, 500);
+
+    .question-title {
+      font-size: 1.4em;
+      padding: .5em 1rem;
+      background-color: map-get($primary, 500);
+      color: map-get($grey, 100);
+      margin: 0;
+    }
+    .question-content {
+      padding: 1em 1rem;
+      font-size: .9em;
+      margin: 0;
+      background-color: map-get($grey, 200);
+
+      p {
+        margin: .4em 0;
+      }
+    }
+
+    .answers {
+      display: grid;
+      border-top: solid 1px map-get($grey, 500);
+      grid-template-areas: "given proposed";
+      grid-template-columns: 1fr 1fr;
+
+      .answer-given, .answer-proposed {
+        padding: .1em 0 0;
+        overflow: hidden;
+        h4 {
+          font-size: 1.2em;
+          text-align: center;
+          margin: 0;
+          padding: 0;
+        }
+        .body {
+          height: 100%;
+          background-color: map-get($grey, 200);
+          padding: .5em 1em;
+          margin: 0;
+
+          p {
+            margin: .4em 0;
+          }
+        }
+        ul.body {
+          list-style-position: inside;
+          li {
+            &.correct {
+              font-weight: bold;
+              color: map-get($success, 500);
+            }
+            &.incorrect {
+              font-weight: bold;
+              color: map-get($danger, 500);
+            }
+          }
+        }
+      }
+
+      .answer-given {
+        grid-area: given;
+      }
+
+      .answer-proposed {
+        grid-area: proposed;
+        border-left: solid 1px map-get($grey, 500);
+      }
+    }
+
+    .marking-form {
+      padding: .5em;
+      border-top: solid 1px map-get($grey, 500);
+    }
+  }
+}

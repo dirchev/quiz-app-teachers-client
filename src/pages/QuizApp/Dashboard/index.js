@@ -60,7 +60,7 @@ class Dashboard extends Component {
           {
             quiz.published
             ? (
-              <button className="button button-grey button-small button-outline">View attempts</button>
+              <Link to={`/quiz-app/${this.props.quizAppId}/quiz/${quiz._id}/engagements`} className="button button-grey button-small button-outline">View attempts</Link>
             )
             : (
               <button onClick={this.handlePublishQuiz(quiz._id)} className="button button-primary button-small button-outline">Publish</button>
