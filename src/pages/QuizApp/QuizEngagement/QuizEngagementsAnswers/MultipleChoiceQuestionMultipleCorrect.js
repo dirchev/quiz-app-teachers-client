@@ -27,7 +27,7 @@ class MultipleChoiceQuestionMultipleCorrect extends Component {
         </div>
         <div className="answer-proposed">
           <h4>Proposed Right Answer</h4>
-          <ul className="body">
+          <ul>
             {
               this.props.question.answers.options.map((answer, index) => {
                 return (
