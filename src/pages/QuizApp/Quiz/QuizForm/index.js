@@ -11,6 +11,7 @@ const DEFAULT_QUIZ_STRUCTURE = {
   name: 'Unnamed Quiz',
   description: '',
   noOfAttempts: 0,
+  isAvailableOffline: false,
   isMandatory: false,
   deadline: '',
   timeLimit: 0,

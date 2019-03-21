@@ -28,6 +28,7 @@ class Checkbox extends Component {
           'has-error': this.props.error,
           'is-successful': this.props.isSuccessful,
           'is-loading': this.props.isLoading,
+          'is-disabled': this.props.disabled,
         })}
       >
         <label htmlFor={this.inputId} className="label">{this.props.label}</label>
@@ -36,6 +37,7 @@ class Checkbox extends Component {
           className="input"
           checked={this.props.checked}
           onChange={this.props.onChange}
+          disabled={this.props.disabled}
           id={this.inputId}
         />
         <div className="check"></div>

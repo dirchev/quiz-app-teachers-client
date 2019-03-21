@@ -44,6 +44,16 @@
         }
       }
 
+      &.is-disabled {
+        .check {
+          pointer-events: none;
+          background-color: map-get($map: $grey, $key: 200);
+        }
+        label {
+          cursor: not-allowed;
+        }
+      }
+
       & > input[type="checkbox"] {
         visibility: hidden;
         display: none;
@@ -102,6 +112,13 @@
           border-radius: 50%;
         }
 
+      }
+    }
+
+    &.is-disabled {
+      cursor: not-allowed;
+      .label, .input, .select {
+        cursor: not-allowed;
       }
     }
 

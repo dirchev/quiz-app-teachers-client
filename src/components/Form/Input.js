@@ -28,6 +28,7 @@ class Input extends Component {
         className="input"
         value={this.props.value}
         placeholder={this.props.placeholder}
+        disabled={this.props.disabled}
         onChange={this.props.onChange}
         min={this.props.min}
         max={this.props.max}
@@ -41,6 +42,7 @@ class Input extends Component {
           'has-error': this.props.error,
           'is-successful': this.props.isSuccessful,
           'is-loading': this.props.isLoading,
+          'is-disabled': this.props.disabled,
         })}
       >
         {

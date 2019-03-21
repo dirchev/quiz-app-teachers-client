@@ -1,11 +1,11 @@
 import React, { Component } from "react"
 import './index.scss'
-import Input from "../../../../components/Form/Input";
-import Textarea from "../../../../components/Form/Textarea";
-import Checkbox from "../../../../components/Form/Checkbox";
+import Input from "components/Form/Input";
+import Textarea from "components/Form/Textarea";
+import Checkbox from "components/Form/Checkbox";
 
 let getValueForField = function (field, event) {
-  if (field === 'isMandatory') {
+  if (['isMandatory', 'isAvailableOffline'].indexOf(field) !== -1) {
     return event.target.checked
   } else if (field === 'noOfAttempts') {
     return parseInt(event.target.value, 10)
@@ -25,9 +25,16 @@ class QuizSettings extends Component {
   handleFieldChange (field) {
     return event => {
       let value = getValueForField(field, event)
+      let newFields = {
+        [field]: value
+      }
+      if (field === 'isAvailableOffline' && value) {
+        newFields.noOfAttempts = 0
+        newFields.isMandatory = false
+      }
       this.props.onQuizChange({
         ...this.props.quiz,
-        [field]: value
+        ...newFields
       })
     }
   }
@@ -63,12 +70,20 @@ class QuizSettings extends Component {
             helpText={"Explain the purpose of the quiz for example, what study material it covers."}
           />
           <Checkbox
+            label="Is available offline"
+            checked={this.props.quiz.isAvailableOffline}
+            onChange={this.handleFieldChange('isAvailableOffline')}
+            helpText="Setting the quiz as available offline will make it accessible for students, even if they do not have internet connection. Offline quizess can not be mandatory and can not have attempts limit."
+          />
+          <Checkbox
+            disabled={this.props.quiz.isAvailableOffline}
             label="Is mandatory"
-            value={this.props.quiz.isMandatory}
+            checked={this.props.quiz.isMandatory}
             onChange={this.handleFieldChange('isMandatory')}
             helpText="Setting the quiz as mandatory will require every student to do it."
           />
           <Input
+            disabled={this.props.quiz.isAvailableOffline}
             label="Number of Attempts"
             placeholder="Put name of the quiz here."
             type="number"
