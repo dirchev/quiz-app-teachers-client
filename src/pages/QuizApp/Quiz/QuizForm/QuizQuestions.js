@@ -7,7 +7,8 @@ import QuestionForm from "./QuestionForm/index.js"
 const DEFAULT_NEW_QUESTION = {
   title: "",
   content: "",
-  answers: []
+  defaultFeedback: "",
+  points: 10
 }
 
 class QuizQuestions extends Component {

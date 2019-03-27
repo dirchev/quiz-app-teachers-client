@@ -106,6 +106,13 @@ class Question extends Component {
             options={QUESTION_TYPE_OPTIONS}
             helpText="Depending on the question type, answers will be presented differently"
           />
+          <Input
+            label="Default Feedback / Guidance"
+            placeholder="Put default feedback here. Really helpful if the quiz is marked automatically."
+            type="text"
+            value={this.props.defaultFeedback}
+            onChange={this.handleFieldChange('defaultFeedback')}
+          />
           <hr/>
           {
             this.renderAnswersForm()
@@ -121,7 +128,7 @@ class Question extends Component {
     } else if (this.props.type === 'MCQ_ONE_RIGHT') {
       return <MultipleChoiceQuestionOneCorrect answers={this.props.answers} onAnswersChange={this.handleAnswersChange} />
     } else if (this.props.type === 'FREE_SHORT_TEXT') {
-      return <FreeShortText />
+      return <FreeShortText answers={this.props.answers} onAnswersChange={this.handleAnswersChange} />
     } else if (this.props.type === 'FREE_LONG_TEXT') {
       return <FreeLongText />
     }
