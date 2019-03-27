@@ -13,6 +13,7 @@ const DEFAULT_QUIZ_STRUCTURE = {
   noOfAttempts: 0,
   isAvailableOffline: false,
   isMandatory: false,
+  canMarkAutomatically: false,
   deadline: '',
   timeLimit: 0,
   questions: []

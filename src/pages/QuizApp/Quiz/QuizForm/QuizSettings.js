@@ -5,7 +5,7 @@ import Textarea from "components/Form/Textarea";
 import Checkbox from "components/Form/Checkbox";
 
 let getValueForField = function (field, event) {
-  if (['isMandatory', 'isAvailableOffline'].indexOf(field) !== -1) {
+  if (['isMandatory', 'isAvailableOffline', 'canMarkAutomatically'].indexOf(field) !== -1) {
     return event.target.checked
   } else if (field === 'noOfAttempts') {
     return parseInt(event.target.value, 10)
@@ -81,6 +81,12 @@ class QuizSettings extends Component {
             checked={this.props.quiz.isMandatory}
             onChange={this.handleFieldChange('isMandatory')}
             helpText="Setting the quiz as mandatory will require every student to do it."
+          />
+          <Checkbox
+            label="Marked automatically"
+            checked={this.props.quiz.canMarkAutomatically}
+            onChange={this.handleFieldChange('canMarkAutomatically')}
+            helpText="This feature will take into consideration the feedback, correct answers and points for each question and will mark the quiz attempts automatically."
           />
           <Input
             disabled={this.props.quiz.isAvailableOffline}
