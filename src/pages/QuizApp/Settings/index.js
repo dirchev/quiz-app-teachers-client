@@ -4,6 +4,7 @@ import JoinCodeForm from "./JoinCodeForm"
 import QuizDetailsForm from "./QuizDetailsForm"
 import { updateQuizApp, deleteQuizApp } from "actions/quizApps"
 import DangerZone from "./DangerZone";
+import { quizApps } from "../../../endpoints";
 
 class Settings extends Component {
   constructor () {
@@ -30,6 +31,15 @@ class Settings extends Component {
     return (
       <div className="container">
         <h1>Quiz App Settings</h1>
+        <a
+          download
+          target="_blank"
+          rel="noopener noreferrer"
+          className="button button-orange"
+          href={quizApps.userTests({quizAppId: this.props.quizApp._id})}
+          >
+          Download User Tests Data
+        </a>
         <QuizDetailsForm
           quizApp={this.props.quizApp}
           onQuizAppChange={this.handleQuizAppChange}

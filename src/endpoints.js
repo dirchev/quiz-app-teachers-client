@@ -8,6 +8,7 @@ export let quizApps = {
   create: `${root}/api/quiz-app`,
   update: ({quizAppId}) => `${root}/api/quiz-app/${quizAppId}`,
   delete: ({quizAppId}) => `${root}/api/quiz-app/${quizAppId}`,
+  userTests: ({quizAppId}) => `${root}/api/quiz-app/${quizAppId}/user-tests`,
 }
 
 export let quizess = {
