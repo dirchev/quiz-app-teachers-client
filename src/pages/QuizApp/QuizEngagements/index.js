@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { Link } from "react-router-dom"
 import { groupBy } from 'lodash'
 import QuizReleaseMarksButton from './QuizReleaseMarksButton'
+import { quizess } from "../../../endpoints";
 
 class QuizEngagements extends Component {
   componentWillMount () {
@@ -23,7 +24,11 @@ class QuizEngagements extends Component {
       <div>
       <div className="title-header">
         <h1>Quiz Engagements <span className="subhead">({this.props.quizEngagements.length})</span></h1>
-        <QuizReleaseMarksButton quizId={this.props.quizId} quizAppId={this.props.quizAppId} />
+        <div className="controls">
+          <QuizReleaseMarksButton quizId={this.props.quizId} quizAppId={this.props.quizAppId} />
+          <a href={quizess.stats({quizAppId: this.props.quizAppId, quizId: this.props.quizId})} className="button button-pink button-small" target="_blank">Get Stats </a>
+        </div>
+
       </div>
         <table className="table table-bordered table-small">
           <thead className="thead-dark">

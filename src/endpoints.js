@@ -17,7 +17,8 @@ export let quizess = {
   update: ({quizAppId, quizId}) => `${root}/api/quiz-app/${quizAppId}/quizess/${quizId}`,
   delete: ({quizAppId, quizId}) => `${root}/api/quiz-app/${quizAppId}/quizess/${quizId}`,
   publish: ({quizAppId, quizId}) => `${root}/api/quiz-app/${quizAppId}/quizess/${quizId}/publish`,
-  releaseMarks: ({quizAppId, quizId}) => `${root}/api/quiz-app/${quizAppId}/quizess/${quizId}/release-marks`
+  releaseMarks: ({quizAppId, quizId}) => `${root}/api/quiz-app/${quizAppId}/quizess/${quizId}/release-marks`,
+  stats: ({quizAppId, quizId}) => `${root}/api/quiz-app/${quizAppId}/quizess/${quizId}/stats`
 }
 
 export let teachers = {
